@@ -1684,6 +1684,14 @@ export hex2num
 # PR #22742: change in isapprox semantics
 @deprecate rtoldefault(x,y) rtoldefault(x,y,0) false
 
+@deprecate convert(::Type{Vector{UInt8}}, s::AbstractString)  Vector{UInt8}(s)
+@deprecate convert(::Type{Array{UInt8}}, s::AbstractString)   Vector{UInt8}(s)
+@deprecate convert(::Type{Vector{Char}}, s::AbstractString)   Vector{Char}(s)
+@deprecate convert(::Type{Symbol}, s::AbstractString)         Symbol(s)
+@deprecate convert(::Type{String}, s::Symbol)                 String(s)
+@deprecate convert(::Type{String}, v::Vector{UInt8})          String(v)
+@deprecate convert(::Type{S}, g::UTF8proc.GraphemeIterator) where {S<:AbstractString}  convert(S, g.s)
+
 # issue #5148, PR #23259
 # warning for `const` on locals should be changed to an error in julia-syntax.scm
 

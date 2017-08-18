@@ -379,6 +379,7 @@ Array{T}(m::Int, n::Int, o::Int) where {T} = Array{T,3}(m, n, o)
 Array{T,1}() where {T} = Array{T,1}(0)
 
 # primitive Symbol constructors
+Symbol(s::Symbol) = s
 function Symbol(s::String)
     return ccall(:jl_symbol_n, Ref{Symbol}, (Ptr{UInt8}, Int),
                  ccall(:jl_string_ptr, Ptr{UInt8}, (Any,), s),
